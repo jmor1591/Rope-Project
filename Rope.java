@@ -107,12 +107,12 @@ public class Rope {
         return ropeList[ran];
     }
 
-    public void addRope(Rope r) {
+    public static void addRope(Rope r) {
         contestants.add(r);
         System.out.println(r + " has entered the competition.");
     }
 
-    public void removeRope(int index) {
+    public static void removeRope(int index) {
         System.out.println(contestants.remove(index) + " has left the running.");
     }
 
