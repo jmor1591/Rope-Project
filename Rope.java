@@ -6,7 +6,7 @@ public class Rope {
     private boolean straight = true;
     private String type = "normal";
     private String knot = "rope";
-    private static ArrayList<Rope> contestants = new ArrayList<Rope>();
+    public static ArrayList<Rope> contestants = new ArrayList<Rope>();
 
     public Rope(int ropeLength) {
         length = ropeLength;
@@ -62,41 +62,45 @@ public class Rope {
 
     public void straighten() {
         straight = true;
-        System.out.println("This " + type + " " + knot + " is straightened");
+        System.out.println("The " + this + " is straightened");
         knot = "rope";
     }
 
     public void coil() {
         straight = false;
-        knot = "coiled";
-        System.out.println("This " + type + " " + knot + " is coiled");
+        System.out.println("The " + this + " is coiled");
+        knot = "coil";
     }
 
     public void cut(int n) {
-        straighten();
         if (n < length) {
+            System.out.print("The " + this + " is now ");
             length -= n;
-            System.out.println("The rope is now " + length + " inches.");
+            System.out.println(length + " inches and straightened.");
+            straight = true;
+            knot = "rope";
         }
     }
 
     public static void knotAll() {
         for (Rope r : contestants) {
-            r.setKnot(randomKnot());
+            if (r.getKnot().equals("rope")) {
+                r.setKnot(randomKnot());
+            }
         }
     }
 
     public static void removeIllKnot(String illegalKnot) {
         for (int i = 0; i < contestants.size(); i++) {
-            if (contestants.get(i).getType().equals(illegalKnot)) {
-                removeRope(i);
+            if (contestants.get(i).getKnot().equals(illegalKnot)) {
+                contestants.get(i).straighten();
                 i--;
             }
         }
     }
 
     public static String randomKnot() {
-        String [] knotList = {"Sailor", "Slipknot", "Half-hitch knot", "Clove-hitch knot"};
+        String [] knotList = {"Sailor knot", "Slipknot", "Half-hitch knot", "Clove-hitch knot"};
         int ran = (int) (Math.random() * knotList.length);
         return knotList[ran];
     }
@@ -109,7 +113,7 @@ public class Rope {
 
     public static void addRope(Rope r) {
         contestants.add(r);
-        System.out.println(r + " has entered the competition.");
+        System.out.println("A " + r + " has entered the competition.");
     }
 
     public static void removeRope(int index) {
@@ -146,6 +150,6 @@ public class Rope {
     }
 
     public String toString() {
-        return "A" + length + " inch " + type + " " + knot;
+        return length + " inch " + type + " " + knot;
     }
 }
