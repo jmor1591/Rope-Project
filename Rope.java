@@ -80,13 +80,13 @@ public class Rope {
         }
     }
 
-    public void knot() {
+    public static void knotAll() {
         for (Rope r : contestants) {
             r.setKnot(randomKnot());
         }
     }
 
-    public void removeKnot(String illegalKnot) {
+    public static void removeIllKnot(String illegalKnot) {
         for (int i = 0; i < contestants.size(); i++) {
             if (contestants.get(i).getType().equals(illegalKnot)) {
                 removeRope(i);
@@ -95,13 +95,13 @@ public class Rope {
         }
     }
 
-    public String randomKnot() {
+    public static String randomKnot() {
         String [] knotList = {"Sailor", "Slipknot", "Half-hitch knot", "Clove-hitch knot"};
         int ran = (int) (Math.random() * knotList.length);
         return knotList[ran];
     }
 
-    public String randomType() {
+    public static String randomType() {
         String[] ropeList = {"Nylon", "Bungee", "Synthetic", "Cotton", "Hemp"};
         int ran = (int) (Math.random() * ropeList.length);
         return ropeList[ran];
@@ -116,7 +116,7 @@ public class Rope {
         System.out.println(contestants.remove(index) + " has left the running.");
     }
 
-    public void longestRope() {
+    public static void longestRope() {
         int max = contestants.get(0).getLength();
         ArrayList<Integer> index = new ArrayList<Integer>();
         index.add(0);
